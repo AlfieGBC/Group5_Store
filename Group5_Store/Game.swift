@@ -2,15 +2,14 @@
 //  Game.swift
 //  Group5_Store
 //
-//  Created by Alfie on 2024/1/21.
+//  Created by Pabita on 2024/1/21.
 //
 
 import Foundation
 
-// The game class represents a video game that is sold in the store.
-// class Game inherits Item class
+//class Game inherits Item class
 class Game: Item {
-    // stored property
+    // stored Properties
     var publisher: String
     var isMultiplayer: Bool
 
@@ -20,7 +19,7 @@ class Game: Item {
         super.init(id: id, title: title, price: price)
     }
 
-    // overrides the parent implementation
+    // info property overrides the parent’s implementation of the property
     override var info: String {
         return "\(super.info)\nPublisher: \(publisher)\nIs Multiplayer: \(isMultiplayer)"
     }

@@ -18,6 +18,7 @@ class Store {
             return
         }
 
+
         // Check if the item already owned by the customer
         guard !customer.itemsList.contains(where: { $0.id == itemId }) else {
             print("You already own this item.")

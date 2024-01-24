@@ -7,41 +7,66 @@
 
 import Foundation
 
-// Create items
-let game1 = Game(id: 1, title: "Kingdom Rush Origins", price: 19.79, publisher: "Ironhide Game Studio", isMultiplayer: false)
-let movie1 = Movie(id: 2, title: "The Spongebob Square Pants Movie", price: 6.69, runningTime: 98)
-let game2 = Game(id: 3, title: "Heroes: Might and Magic", price: 54.99, publisher: "Ubisoft", isMultiplayer: true)
+// Demonstration of basic functionality
 
-// Create store and add items
+print("=== Initialize data ===\n")
+
+print("Create a store and add movie and game items")
 let store = Store()
-store.items = [game1, movie1, game2]
+let movie1 = Movie(id: 1, title: "The Spongebob Square Pants Movie", price: 6.69, runningTime: 98)
+let movie2 = Movie(id: 2, title: "Another Movie", price: 9.99, runningTime: 120)
+let game1 = Game(id: 3, title: "Kingdom Rush Origins", price: 19.79, publisher: "Ironhide Game Studio", isMultiplayer: false)
+let game2 = Game(id: 4, title: "Another Game", price: 29.99, publisher: "Game Studio", isMultiplayer: true)
+store.items = [movie1, movie2, game1, game2]
 
-// Create customer
+print("Creating a customer")
 let customer = Customer()
 
-// Demonstrate basic functionality
-store.findByTitle(keyword: "kingdom")  // Search for items with keyword "kingdom"
+print("\n=== 1. Test search feature ===")
+print("\n1-1. Scenario: Searching for an existing item")
+store.findByTitle(keyword: "Spongebob")
 
-store.buyItem(customer: customer, itemId: 1)  // Try to purchase game1 without sufficient funds
+print("\n1-2. Scenario: Searching for a non-existing item")
+store.findByTitle(keyword: "Nonexistent")
 
-customer.reloadAccount(amount: 20.0)  // Reload customer's account
+print("\n=== 2. Test purchase functionality ===")
+print("Current gift card balance: $\(customer.balance)")
 
-store.buyItem(customer: customer, itemId: 1)  // Purchase game1 successfully
+print("\n2-1. Scenario: Attempting to purchase an unaffordable item")
+store.buyItem(customer: customer, itemId: 4)
 
-store.buyItem(customer: customer, itemId: 1)  // Try to purchase game1 again (should fail)
+print("\n2-2. Scenario: Attempting to purchase an affordable item")
+store.buyItem(customer: customer, itemId: 1)
 
-customer.useItem(id: 1, numMinutes: 40)  // Try to use game1 for more than 30 minutes
+print("\n2-3. Scenario: Reloading the gift card and attempting to purchase previously unaffordable item")
+customer.reloadAccount(amount: 30.0)
+store.buyItem(customer: customer, itemId: 4)
 
-store.issueRefund(customer: customer, itemId: 1)  // Try to refund game1 (should fail)
+print("\n2-4. Scenario: Attempting to purchase the same item again")
+store.buyItem(customer: customer, itemId: 1)
 
-customer.useItem(id: 2, numMinutes: 25)  // Use movie1 for less than 30 minutes
-
-store.issueRefund(customer: customer, itemId: 2)  // Refund movie1 successfully
-
-// Display customer's items and balance
-print("\nCustomer's owned items:")
-for ownedItem in customer.itemsList {
-    print("\(ownedItem.item.title), Minutes Used: \(ownedItem.minutesUsed)")
+print("\n=== Customer Current Information ===")
+print("\n1. Current Balance: $\(customer.balance)")
+print("\n2. Owned Items:")
+customer.itemsList.forEach { item in
+    print("- \(item.info)")
 }
 
-print("\nCustomer's current balance: $\(customer.balance)")
+print("\n=== 3. Test refund functionality ===")
+
+print("\n3-1. Scenario: Attempting to refund an item used for more than 30 minutes")
+customer.useItem(id: 1, numMinutes: 40)
+store.issueRefund(customer: customer, itemId: 1)
+
+print("\n3-2. Scenario: Attempting to refund an unused item")
+store.issueRefund(customer: customer, itemId: 2)
+
+print("\n3-2. Scenario: Attempting to refund an unused item")
+store.issueRefund(customer: customer, itemId: 4)
+
+print("\n=== Customer Current Information ===")
+print("\n1. Current Balance: $\(customer.balance)")
+print("\n2. Owned Items:")
+customer.itemsList.forEach { item in
+    print("- \(item.info)")
+}

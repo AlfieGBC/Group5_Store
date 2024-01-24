@@ -4,6 +4,11 @@
 //
 //  Created by Alfie on 2024/1/21.
 //
+//  Check Requirements:
+//  1. Customer class with itemsList, balance, reloadAccount(amount), and useItem(id, minutes) methods.
+//
+
+
 
 import Foundation
 
@@ -13,7 +18,7 @@ class Customer {
 
     func reloadAccount(amount: Double) {
         balance += amount
-        print("Reloaded account with $\(amount). New balance: $\(balance)")
+        print("Account reloaded with $\(amount). New balance: $\(balance)")
     }
 
     func useItem(id: Int, numMinutes: Int) {
@@ -21,7 +26,7 @@ class Customer {
             ownedItem.minutesUsed += numMinutes
             print("Used \(ownedItem.title) for \(numMinutes) minutes. Total minutes used: \(ownedItem.minutesUsed)")
         } else {
-            print("Item not found in your list.")
+            print("Item with ID \(id) not found in your items list.")
         }
     }
 }

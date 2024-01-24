@@ -7,21 +7,27 @@
 
 import Foundation
 
+// class Item conforming IsPurchasable protocol
 class Item: IsPurchasable {
+    // stored properties
     var id: Int
     var title: String
     var price: Double
 
+    // initializer
     init(id: Int, title: String, price: Double) {
         self.id = id
         self.title = title
         self.price = price
     }
 
+    // computed property
     var info: String {
-        return "\(title) $\(price)"
+        return "Item Title: \(title), \n" +
+               "Item Price: $\(price)"
     }
 
+    // function for printing receipt
     func printReceipt(isRefund: Bool, amount: Double) {
         if isRefund {
             print("-------------------------")

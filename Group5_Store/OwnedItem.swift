@@ -7,12 +7,13 @@
 
 import Foundation
 
-class OwnedItem {
-    var item: Item
+// class OwnedItem inherits Item class
+class OwnedItem : Item {
+//    var item: Item
     var minutesUsed: Int
 
-    init(item: Item) {
-        self.item = item
-        self.minutesUsed = 0
+    init(id: Int, title: String, price: Double, minutesUsed: Int) {
+        self.minutesUsed = minutesUsed
+        super.init(id: id, title: title, price: price)
     }
 }

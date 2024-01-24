@@ -22,6 +22,8 @@ let customer = Customer()
 // Demonstrate basic functionality
 store.findByTitle(keyword: "kingdom")  // Search for items with keyword "kingdom"
 
+store.findByTitle(keyword: "Wonka") // Search for an item that doesn't exist
+
 store.buyItem(customer: customer, itemId: 1)  // Try to purchase game1 without sufficient funds
 
 customer.reloadAccount(amount: 20.0)  // Reload customer's account
@@ -34,6 +36,8 @@ customer.useItem(id: 1, numMinutes: 40)  // Try to use game1 for more than 30 mi
 
 store.issueRefund(customer: customer, itemId: 1)  // Try to refund game1 (should fail)
 
+store.buyItem(customer: customer, itemId: 2) // Buy another item from the store
+
 customer.useItem(id: 2, numMinutes: 25)  // Use movie1 for less than 30 minutes
 
 store.issueRefund(customer: customer, itemId: 2)  // Refund movie1 successfully
@@ -41,7 +45,7 @@ store.issueRefund(customer: customer, itemId: 2)  // Refund movie1 successfully
 // Display customer's items and balance
 print("\nCustomer's owned items:")
 for ownedItem in customer.itemsList {
-    print("\(ownedItem.item.title), Minutes Used: \(ownedItem.minutesUsed)")
+    print("\(ownedItem.title), Minutes Used: \(ownedItem.minutesUsed)")
 }
 
 print("\nCustomer's current balance: $\(customer.balance)")

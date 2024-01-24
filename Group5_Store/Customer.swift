@@ -17,9 +17,9 @@ class Customer {
     }
 
     func useItem(id: Int, numMinutes: Int) {
-        if let ownedItem = itemsList.first(where: { $0.item.id == id }) {
+        if let ownedItem = itemsList.first(where: { $0.id == id }) {
             ownedItem.minutesUsed += numMinutes
-            print("Used \(ownedItem.item.title) for \(numMinutes) minutes. Total minutes used: \(ownedItem.minutesUsed)")
+            print("Used \(ownedItem.title) for \(numMinutes) minutes. Total minutes used: \(ownedItem.minutesUsed)")
         } else {
             print("Item not found in your list.")
         }

@@ -7,7 +7,9 @@
 
 import Foundation
 
+// class Movie inherits Item class
 class Movie: Item {
+    // stored property
     var runningTime: Int
 
     init(id: Int, title: String, price: Double, runningTime: Int) {
@@ -15,7 +17,9 @@ class Movie: Item {
         super.init(id: id, title: title, price: price)
     }
 
+    // info property overrides the parent’s implementation of the property
     override var info: String {
-        return "\(super.info)\nRunning Time: \(runningTime) min"
+        return "\(super.info)\n" +
+               "Running Time: \(runningTime) min"
     }
 }

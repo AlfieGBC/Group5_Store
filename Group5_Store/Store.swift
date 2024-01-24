@@ -16,7 +16,7 @@ class Store {
             return
         }
 
-        guard !customer.itemsList.contains(where: { $0.item.id == itemId }) else {
+        guard !customer.itemsList.contains(where: { $0.id == itemId }) else {
             print("You already own this item.")
             return
         }
@@ -33,7 +33,7 @@ class Store {
     }
 
     func issueRefund(customer: Customer, itemId: Int) {
-        guard let ownedItemIndex = customer.itemsList.firstIndex(where: { $0.item.id == itemId }) else {
+        guard let ownedItemIndex = customer.itemsList.firstIndex(where: { $0.id == itemId }) else {
             print("Item not found in your list.")
             return
         }

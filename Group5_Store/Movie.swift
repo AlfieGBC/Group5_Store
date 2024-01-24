@@ -2,7 +2,7 @@
 //  Movie.swift
 //  Group5_Store
 //
-//  Created by Alfie on 2024/1/21.
+//  Created by Pabita on 2024/1/21.
 //
 
 import Foundation
@@ -19,7 +19,6 @@ class Movie: Item {
 
     // info property overrides the parent’s implementation of the property
     override var info: String {
-        return "\(super.info)\n" +
-               "Running Time: \(runningTime) min"
+        return "\(super.info)\nRunning Time: \(runningTime) min"
     }
 }

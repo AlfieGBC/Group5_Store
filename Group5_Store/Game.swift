@@ -7,7 +7,10 @@
 
 import Foundation
 
+// The game class represents a video game that is sold in the store.
+// class Game inherits Item class
 class Game: Item {
+    // stored property
     var publisher: String
     var isMultiplayer: Bool
 
@@ -17,6 +20,7 @@ class Game: Item {
         super.init(id: id, title: title, price: price)
     }
 
+    // overrides the parent implementation
     override var info: String {
         return "\(super.info)\nPublisher: \(publisher)\nIs Multiplayer: \(isMultiplayer)"
     }
